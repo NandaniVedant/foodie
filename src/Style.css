@@ -83,23 +83,26 @@
     transition: 0.3s;
 }
 
-.about-container {
+/* .about-container {
     padding: 50px 0;
     background-color: #f8f9fa;
     border-radius: 10px;
     box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-}
+} */
 
 .about-img {
     width: 100%;
     border-radius: 10px;
 }
-
+.form-control-sm 
+{
+    width: 124px;
+}
 .about-title {
     font-size: 28px;
     font-weight: bold;
-    color: #333;
-    margin-bottom: 15px;
+    color: #dc2f2f;
+    /* margin-bottom: 15px; */
 }
 
 .about-text {
@@ -162,4 +165,24 @@
     position: relative;
     bottom: 0;
     width: 100%;
+}
+/* Ensure the page takes the full height */
+html, body, #root {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Push main content to take available space */
+.main-content {
+    flex: 1;
+}
+
+/* Footer styles */
+.footer {
+    background-color: #dc2f2f;
+    color: white;
+    padding: 10px;
+    text-align: center;
 }

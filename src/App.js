@@ -3,24 +3,29 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Home from './Pages/Home';
 import './Style.css';
 import About from './Pages/About';
-// import Recipedetail from './Pages/Recipedetail';
 import Footer from './Pages/Footer';
 import Navbar from './Pages/Navbar';
 import Recipe from './Pages/Recipe';
+import RecipePage from './Pages/RecipePage';
 
 function App() {
   return (
     <Router>
-      <Navbar />
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/category/:categoryName" element={<Recipe />} />
-        <Route path="/about" element={<About />} />
-        {/* <Route path="/recipes" element={<Recipe />} />
+      <div className="d-flex flex-column min-vh-100">
+        <Navbar />
         
-        <Route path="/recipes/:id" element={<Recipedetail />} /> */}
-      </Routes>
-      <Footer />
+        {/* Main content area should expand */}
+        <div className="flex-grow-1">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/category/:categoryName" element={<Recipe />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/recipes" element={<RecipePage />} />
+          </Routes>
+        </div>
+
+        <Footer />
+      </div>
     </Router>
   );
 }

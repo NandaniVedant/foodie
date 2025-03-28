@@ -1,31 +1,53 @@
+import { useState } from 'react';
 import { Link } from 'react-router-dom';
-// import logo from '../assets/logo.png'; // Make sure to import your logo
 
 const Navbar = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <nav className="navbar navbar-expand-lg" style={{ backgroundColor: '#dc2f2f', padding: '10px' }}>
-      <div className="container">
-        {/* Logo and Brand */}
+      <div className="container d-flex align-items-center justify-content-between">
+        {/* Logo */}
         <Link className="navbar-brand text-white fw-bold d-flex align-items-center" to="/">
-          {/* <img src={logo} alt="Logo" style={{ height: '40px', marginRight: '10px' }} /> */}
-     Foodie
+          Foodie
         </Link>
 
+        {/* Mobile Search Bar (Always Visible) */}
+        <form className="d-flex d-lg-none flex-grow-1 mx-3" style={{ maxWidth: '200px' }}>
+          <input 
+            className="form-control form-control-sm me-1"
+            type="search" 
+            placeholder="Search..."
+            aria-label="Search"
+            style={{ border: 'none', outline: 'none', boxShadow: 'none' }}
+          />
+          <button 
+            className="btn btn-light btn-sm" 
+            type="submit"
+            style={{ border: 'none' }}
+          >
+            Go
+          </button>
+        </form>
+
         {/* Navbar Toggle Button */}
-        <button 
-          className="navbar-toggler" 
-          type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#navbarNav"
+        <button
+          className="navbar-toggler"
+          type="button"
+          onClick={() => setIsOpen(!isOpen)}
           aria-controls="navbarNav"
-          aria-expanded="false"
+          aria-expanded={isOpen}
           aria-label="Toggle navigation"
+          style={{ border: 'none' }} // Remove border from button
         >
-          <span className="navbar-toggler-icon"></span>
+          <span 
+            className="navbar-toggler-icon" 
+            style={{ filter: 'invert(1)' }} // Make icon white
+          ></span>
         </button>
 
-        {/* Navbar Links and Search Bar */}
-        <div className="collapse navbar-collapse" id="navbarNav">
+        {/* Navbar Links */}
+        <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="navbarNav">
           <ul className="navbar-nav ms-auto">
             <li className="nav-item">
               <Link className="nav-link text-white" to="/">Home</Link>
@@ -38,15 +60,22 @@ const Navbar = () => {
             </li>
           </ul>
 
-          {/* Search Bar */}
-          <form className="d-flex ms-3">
+          {/* Desktop Search Bar (Larger Screens) */}
+          <form className="d-flex ms-3 d-none d-lg-flex" style={{ maxWidth: '250px' }}>
             <input 
-              className="form-control me-2" 
+              className="form-control form-control-sm me-1" 
               type="search" 
-              placeholder="Search recipes..." 
-              aria-label="Search" 
+              placeholder="Search..."
+              aria-label="Search"
+              style={{ border: 'none', outline: 'none', boxShadow: 'none' }}
             />
-            <button className="btn btn-light" type="submit">Search</button>
+            <button 
+              className="btn btn-light btn-sm" 
+              type="submit"
+              style={{ border: 'none' }}
+            >
+              Go
+            </button>
           </form>
         </div>
       </div>

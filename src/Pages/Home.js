@@ -7,10 +7,10 @@ import About from "./About";
 const images = [
     {
         src: "/Img/slider.jpg",
-        title: "Welcome to Tasty Bites",
+        title: "Welcome to Foodie",
         description: "Explore delicious recipes and cook amazing dishes at home.",
         text: "Slide 1"
-    },  
+    },
     {
         src: "/Img/slider.jpg",
         title: "Healthy & Tasty Recipes",
@@ -50,9 +50,9 @@ const Home = () => {
                     </motion.div>
                 </AnimatePresence>
             </div>
-            <About/>
+            <About />
             <Filterrecipi />
-        
+
         </>
     );
 }; const categoryImages = {

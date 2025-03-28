@@ -1,10 +1,10 @@
 body {
   margin: 0;
-  font-family: 'Caveat', cursive !important;
+  font-family: "Winky Sans", sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: 'Caveat', cursive !important;
+  font-family: "Winky Sans", sans-serif !important; 
 }
