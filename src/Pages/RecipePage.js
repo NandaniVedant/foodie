@@ -30,9 +30,13 @@ const RecipePage = () => {
                             <img src={recipe.image} alt={recipe.name} className="card-img-top" />
                             <div className="card-body">
                                 <h5 className="card-title">{recipe.name}</h5>
-                                <Link to={`/category/${recipe.mealType[0]}`} className="btn btn-danger">
+                                {/* <Link to={`/category/${recipe.mealType[0]}`} className="btn btn-danger">
                                     View Category
+                                </Link> */}
+                                <Link to={`/recipe/${recipe.id}`} className="btn btn-danger">
+                                    View Details
                                 </Link>
+
                             </div>
                         </div>
                     </div>

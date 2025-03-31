@@ -7,6 +7,7 @@ import Footer from './Pages/Footer';
 import Navbar from './Pages/Navbar';
 import Recipe from './Pages/Recipe';
 import RecipePage from './Pages/RecipePage';
+import RecipeDetails from './Pages/Recipiedetail';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/category/:categoryName" element={<Recipe />} />
             <Route path="/about" element={<About />} />
             <Route path="/recipes" element={<RecipePage />} />
+            <Route path="/recipe/:id" element={<RecipeDetails />} />
           </Routes>
         </div>
 
