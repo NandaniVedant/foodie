@@ -63,7 +63,7 @@ const Home = () => {
 
 const categoryImages = {
     Breakfast: "/Img/breakfast.jpg",
-    Lunch: "/Img/lunch.jpg",
+    Lunch: "/Img/Lunch.jpg",
     Dinner: "/Img/dinner.jpg",
     Snacks: "/Img/snaks2.jpg",
     Dessert: "/Img/dessert.jpg",
