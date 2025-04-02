@@ -98,11 +98,11 @@
 {
     width: 124px;
 }
-.about-title {
+.service-title,.ourlocationtital ,.contactus-title{
     font-size: 28px;
     font-weight: bold;
     color: #dc2f2f;
-    /* margin-bottom: 15px; */
+    margin-bottom: 15px;
 }
 
 .about-text {
@@ -111,8 +111,17 @@
     line-height: 1.6;
     margin-bottom: 15px;
 }
-
-
+.about-title {
+    font-size: 28px;
+    font-weight: bold;
+    color: #dc2f2f;
+    /* margin-bottom: 15px; */
+}
+.AllRecipestital{
+    font-size: 28px;
+    font-weight: bold;
+    color: #dc2f2f;
+}
 /* Category Page */
 .category-page {
     text-align: center;

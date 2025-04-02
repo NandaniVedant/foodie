@@ -14,15 +14,15 @@ const Navbar = () => {
 
         {/* Mobile Search Bar (Always Visible) */}
         <form className="d-flex d-lg-none flex-grow-1 mx-3" style={{ maxWidth: '200px' }}>
-          <input 
+          <input
             className="form-control form-control-sm me-1"
-            type="search" 
+            type="search"
             placeholder="Search..."
             aria-label="Search"
             style={{ border: 'none', outline: 'none', boxShadow: 'none' }}
           />
-          <button 
-            className="btn btn-light btn-sm" 
+          <button
+            className="btn btn-light btn-sm"
             type="submit"
             style={{ border: 'none' }}
           >
@@ -40,8 +40,8 @@ const Navbar = () => {
           aria-label="Toggle navigation"
           style={{ border: 'none' }} // Remove border from button
         >
-          <span 
-            className="navbar-toggler-icon" 
+          <span
+            className="navbar-toggler-icon"
             style={{ filter: 'invert(1)' }} // Make icon white
           ></span>
         </button>
@@ -58,19 +58,25 @@ const Navbar = () => {
             <li className="nav-item">
               <Link className="nav-link text-white" to="/recipes">Recipes</Link>
             </li>
+            <li className="nav-item">
+              <Link className="nav-link text-white" to="">Services</Link>
+            </li>
+            <li className="nav-item">
+              <Link className="nav-link text-white" to="">Contact</Link>
+            </li>
           </ul>
 
           {/* Desktop Search Bar (Larger Screens) */}
           <form className="d-flex ms-3 d-none d-lg-flex" style={{ maxWidth: '250px' }}>
-            <input 
-              className="form-control form-control-sm me-1" 
-              type="search" 
+            <input
+              className="form-control form-control-sm me-1"
+              type="search"
               placeholder="Search..."
               aria-label="Search"
               style={{ border: 'none', outline: 'none', boxShadow: 'none' }}
             />
-            <button 
-              className="btn btn-light btn-sm" 
+            <button
+              className="btn btn-light btn-sm"
               type="submit"
               style={{ border: 'none' }}
             >
