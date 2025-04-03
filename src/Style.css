@@ -82,6 +82,9 @@
     font-size: 18px;
     transition: 0.3s;
 }
+ul {
+    list-style-type: none;
+}
 
 /* .about-container {
     padding: 50px 0;
