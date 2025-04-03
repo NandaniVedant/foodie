@@ -1,9 +1,16 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
-
+  const [word, setword] = useState("");
+  const navigate = useNavigate();
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (word.trim() !== "") {
+      navigate(`/searchproduct/${word}`);
+    }
+  };
   return (
     <nav className="navbar navbar-expand-lg" style={{ backgroundColor: '#dc2f2f', padding: '10px' }}>
       <div className="container d-flex align-items-center justify-content-between">
@@ -13,20 +20,21 @@ const Navbar = () => {
         </Link>
 
         {/* Mobile Search Bar (Always Visible) */}
-        <form className="d-flex d-lg-none flex-grow-1 mx-3" style={{ maxWidth: '200px' }}>
+        <form className="d-flex d-lg-none flex-grow-1 mx-3" style={{ maxWidth: '200px' }} onSubmit={handleSubmit}>
           <input
             className="form-control form-control-sm me-1"
             type="search"
             placeholder="Search..."
             aria-label="Search"
             style={{ border: 'none', outline: 'none', boxShadow: 'none' }}
+            onChange={(a) => setword(a.target.value)}
           />
           <button
             className="btn btn-light btn-sm"
             type="submit"
             style={{ border: 'none' }}
           >
-            Go
+            serch
           </button>
         </form>
 
@@ -67,20 +75,22 @@ const Navbar = () => {
           </ul>
 
           {/* Desktop Search Bar (Larger Screens) */}
-          <form className="d-flex ms-3 d-none d-lg-flex" style={{ maxWidth: '250px' }}>
+          <form className="d-flex ms-3 d-none d-lg-flex" style={{ maxWidth: '250px' }} onSubmit={handleSubmit}>
+
             <input
               className="form-control form-control-sm me-1"
               type="search"
               placeholder="Search..."
               aria-label="Search"
               style={{ border: 'none', outline: 'none', boxShadow: 'none' }}
+              onChange={(a) => setword(a.target.value)}
             />
             <button
               className="btn btn-light btn-sm"
               type="submit"
               style={{ border: 'none' }}
             >
-              Go
+              Search
             </button>
           </form>
         </div>
