@@ -1,97 +1,70 @@
-import { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 
 const Navbar = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [word, setword] = useState("");
+  const [isOpen, setIsOpen] = useState(false); // Track if mobile menu is open
+  const [searchText, setSearchText] = useState(""); // Store search input value
   const navigate = useNavigate();
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (word.trim() !== "") {
-      navigate(`/searchproduct/${word}`);
+  const location = useLocation(); // Get current page path
+
+  // Function to handle search submission
+  const handleSearch = (e) => {
+    e.preventDefault(); // Prevent page reload
+    if (searchText.trim() !== "") {
+      navigate(`/searchproduct/${searchText}`); // Go to search page
+      setIsOpen(false); // Close navbar after search
     }
   };
+
+  // Close navbar automatically when the route (page) changes
+  useEffect(() => {
+    setIsOpen(false);
+  }, [location.pathname]);
+
   return (
-    <nav className="navbar navbar-expand-lg" style={{ backgroundColor: '#dc2f2f', padding: '10px' }}>
+    <nav className="navbar navbar-expand-lg" style={{ backgroundColor: "#dc2f2f", padding: "10px" }}>
       <div className="container d-flex align-items-center justify-content-between">
+        
         {/* Logo */}
-        <Link className="navbar-brand text-white fw-bold d-flex align-items-center" to="/">
+        <Link className="navbar-brand text-white fw-bold" to="/" onClick={() => setIsOpen(false)}>
           Foodie
         </Link>
 
-        {/* Mobile Search Bar (Always Visible) */}
-        <form className="d-flex d-lg-none flex-grow-1 mx-3" style={{ maxWidth: '200px' }} onSubmit={handleSubmit}>
+        {/* Mobile Search Bar */}
+        <form className="d-flex d-lg-none mx-3" style={{ maxWidth: "200px" }} onSubmit={handleSearch}>
           <input
             className="form-control form-control-sm me-1"
             type="search"
             placeholder="Search..."
-            aria-label="Search"
-            style={{ border: 'none', outline: 'none', boxShadow: 'none' }}
-            onChange={(a) => setword(a.target.value)}
+            onChange={(e) => setSearchText(e.target.value)}
           />
-          <button
-            className="btn btn-light btn-sm"
-            type="submit"
-            style={{ border: 'none' }}
-          >
-            serch
-          </button>
+          <button className="btn btn-light btn-sm" type="submit">Search</button>
         </form>
 
-        {/* Navbar Toggle Button */}
-        <button
-          className="navbar-toggler"
-          type="button"
-          onClick={() => setIsOpen(!isOpen)}
-          aria-controls="navbarNav"
-          aria-expanded={isOpen}
-          aria-label="Toggle navigation"
-          style={{ border: 'none' }} // Remove border from button
-        >
-          <span
-            className="navbar-toggler-icon"
-            style={{ filter: 'invert(1)' }} // Make icon white
-          ></span>
+        {/* Navbar Toggle Button (for mobile) */}
+        <button className="navbar-toggler" onClick={() => setIsOpen(!isOpen)}>
+          <span className="navbar-toggler-icon"></span>
         </button>
 
         {/* Navbar Links */}
-        <div className={`collapse navbar-collapse ${isOpen ? 'show' : ''}`} id="navbarNav">
+        <div className={`collapse navbar-collapse ${isOpen ? "show" : ""}`}>
           <ul className="navbar-nav ms-auto">
-            <li className="nav-item">
-              <Link className="nav-link text-white" to="/">Home</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-white" to="/about">About</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-white" to="/recipes">Recipes</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-white" to="">Services</Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link text-white" to="">Contact</Link>
-            </li>
+            <li className="nav-item"><Link className="nav-link text-white" to="/" onClick={() => setIsOpen(false)}>Home</Link></li>
+            <li className="nav-item"><Link className="nav-link text-white" to="/about" onClick={() => setIsOpen(false)}>About</Link></li>
+            <li className="nav-item"><Link className="nav-link text-white" to="/recipes" onClick={() => setIsOpen(false)}>Recipes</Link></li>
+            <li className="nav-item"><Link className="nav-link text-white" to="/services" onClick={() => setIsOpen(false)}>Services</Link></li>
+            <li className="nav-item"><Link className="nav-link text-white" to="/contact" onClick={() => setIsOpen(false)}>Contact</Link></li>
           </ul>
 
-          {/* Desktop Search Bar (Larger Screens) */}
-          <form className="d-flex ms-3 d-none d-lg-flex" style={{ maxWidth: '250px' }} onSubmit={handleSubmit}>
-
+          {/* Desktop Search Bar (Only for large screens) */}
+          <form className="d-flex ms-3 d-none d-lg-flex" style={{ maxWidth: "250px" }} onSubmit={handleSearch}>
             <input
               className="form-control form-control-sm me-1"
               type="search"
               placeholder="Search..."
-              aria-label="Search"
-              style={{ border: 'none', outline: 'none', boxShadow: 'none' }}
-              onChange={(a) => setword(a.target.value)}
+              onChange={(e) => setSearchText(e.target.value)}
             />
-            <button
-              className="btn btn-light btn-sm"
-              type="submit"
-              style={{ border: 'none' }}
-            >
-              Search
-            </button>
+            <button className="btn btn-light btn-sm" type="submit">Search</button>
           </form>
         </div>
       </div>

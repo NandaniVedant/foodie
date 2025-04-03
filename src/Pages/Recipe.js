@@ -10,10 +10,7 @@ const Recipe = () => {
         fetch("https://dummyjson.com/recipes")
             .then((response) => response.json())
             .then((data) => {
-                const filteredRecipes = data.recipes.filter(recipe =>
-                    recipe.mealType.includes(categoryName)
-                );
-                setRecipes(filteredRecipes);
+                setRecipes(data.recipes.filter(recipe => recipe.mealType.includes(categoryName)));
                 setLoading(false);
             })
             .catch((error) => {
@@ -22,24 +19,24 @@ const Recipe = () => {
             });
     }, [categoryName]);
 
-    if (loading) return <p>Loading {categoryName} recipes...</p>;
+    if (loading)
+        return (
+            <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+                <div className="spinner-border text-danger" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        );
 
     return (
-        <div className="category-page">
-            <h2 style={{ color: "#dc2f2f", textDecoration: "none" }}>
-                {categoryName} Recipes
-            </h2>
-            <div className="food-items">
+        <div className="category-page text-center">
+            <h2 style={{ color: "#dc2f2f" }}>{categoryName} Recipes</h2>
+            <div className="food-items d-flex flex-wrap justify-content-center">
                 {recipes.length > 0 ? (
                     recipes.map((recipe) => (
-                        <Link 
-                            key={recipe.id} 
-                            to={`/recipe/${recipe.id}`} 
-                            className="food-card"
-                            style={{ color: "#dc2f2f", textDecoration: "none" }}
-                        >
-                            <img src={recipe.image} alt={recipe.name} />
-                            <p>{recipe.name}</p>
+                        <Link key={recipe.id} to={`/recipe/${recipe.id}`} className="food-card text-decoration-none text-danger m-3">
+                            <img src={recipe.image} alt={recipe.name} className="img-fluid rounded" style={{ maxWidth: "200px", height: "auto" }} />
+                            <p className="mt-2">{recipe.name}</p>
                         </Link>
                     ))
                 ) : (

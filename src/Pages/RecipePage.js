@@ -21,7 +21,14 @@ const RecipePage = () => {
             .catch(() => setLoading(false));
     }, []);
 
-    if (loading) return <p>Loading recipes...</p>;
+    if (loading) 
+        return (
+            <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+                <div className="spinner-border text-danger" role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        );
 
     // Ensure recipes exist before sorting
     let sortedRecipes = [...recipes];
@@ -77,7 +84,7 @@ const RecipePage = () => {
                             <div className="card">
                                 <img src={recipe.image} alt={recipe.name} className="card-img-top" />
                                 <div className="card-body">
-                                    <h5 className="card-title" style={{ color: "#dc2f2f" }}>{recipe.name}</h5>
+                                    <h5 className="card-title text-danger">{recipe.name}</h5>
                                     <p><strong>Cooking Time:</strong> {recipe.cookTimeMinutes} mins</p>
                                     <p><strong>Rating:</strong> {recipe.rating} ⭐</p>
                                     <Link to={`/recipe/${recipe.id}`} className="btn btn-danger">
@@ -102,12 +109,12 @@ const RecipePage = () => {
                     Previous
                 </button>
 
-                <span className="align-self-center  mb-5">
+                <span className="align-self-center mb-5">
                     Page {currentPage} of {totalPages}
                 </span>
 
                 <button 
-                    className="btn btn-outline-danger mx-2  mb-5"
+                    className="btn btn-outline-danger mx-2 mb-5"
                     onClick={() => setCurrentPage(prev => Math.min(prev + 1, totalPages))}
                     disabled={currentPage === totalPages}
                 >

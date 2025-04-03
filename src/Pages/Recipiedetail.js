@@ -19,8 +19,17 @@ const RecipeDetails = () => {
             });
     }, [id]);
 
-    if (loading) return <p style={{ color: "#dc2f2f", textAlign: "center", fontSize: "18px" }}>Loading recipe details...</p>;
-    if (!recipe) return <p style={{ color: "#dc2f2f", textAlign: "center", fontSize: "18px" }}>Recipe not found.</p>;
+    if (loading)
+        return (
+            <div className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+                <div className="spinner-border" style={{ color: "#dc2f2f", width: "3rem", height: "3rem" }} role="status">
+                    <span className="visually-hidden">Loading...</span>
+                </div>
+            </div>
+        );
+
+    if (!recipe)
+        return <p style={{ color: "#dc2f2f", textAlign: "center", fontSize: "18px" }}>Recipe not found.</p>;
 
     return (
         <div className="container mt-5">
@@ -30,9 +39,8 @@ const RecipeDetails = () => {
                 <p style={{ fontSize: "18px", fontWeight: "bold" }}>⭐ Rating: {recipe.rating} / 5</p>
             </div>
 
-            {/* Image & Cooking Details (6-6 Grid) */}
+            {/* Image & Cooking Details */}
             <div className="row">
-                {/* Left Side - Recipe Image */}
                 <div className="col-md-6">
                     <img
                         src={recipe.image}
@@ -45,8 +53,6 @@ const RecipeDetails = () => {
                         }}
                     />
                 </div>
-
-                {/* Right Side - Cooking Time & Servings */}
                 <div className="col-md-6" style={{ color: "#dc2f2f", paddingLeft: "20px" }}>
                     <h4 style={{ fontWeight: "bold", borderBottom: "2px solid #dc2f2f", paddingBottom: "5px" }}>Preparation & Cooking Time</h4>
                     <p><strong>Preparation Time:</strong> {recipe.prepTimeMinutes} minutes</p>
@@ -55,7 +61,7 @@ const RecipeDetails = () => {
                 </div>
             </div>
 
-            {/* Ingredients Section */}
+            {/* Ingredients */}
             <div style={{ marginTop: "30px", color: "#dc2f2f", padding: "15px", borderRadius: "10px" }}>
                 <h4 style={{ fontWeight: "bold", borderBottom: "2px solid #dc2f2f", paddingBottom: "5px" }}>Ingredients</h4>
                 <ul style={{ listStyleType: "square", paddingLeft: "20px" }}>
@@ -65,14 +71,14 @@ const RecipeDetails = () => {
                 </ul>
             </div>
 
-            {/* Recipe Instructions */}
+            {/* Instructions */}
             <div style={{ marginTop: "30px", color: "#dc2f2f", padding: "15px", borderRadius: "10px" }}>
                 <h4 style={{ fontWeight: "bold", borderBottom: "2px solid #dc2f2f", paddingBottom: "5px" }}>Recipe Instructions</h4>
                 <p style={{ fontSize: "16px", lineHeight: "1.6" }}>{recipe.instructions}</p>
             </div>
 
             {/* Back Button */}
-            <div className="text-center mt-4">
+            <div className="text-center mt-4 mb-5">
                 <Link
                     to="/"
                     className="btn"
@@ -87,7 +93,7 @@ const RecipeDetails = () => {
                         boxShadow: "0px 4px 6px rgba(0, 0, 0, 0.2)",
                     }}
                 >
-                    ⬅ Back to Recipes
+                    Back to Recipes
                 </Link>
             </div>
         </div>
